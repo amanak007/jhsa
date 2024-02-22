@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 const ejs = require('ejs');
@@ -10,8 +12,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
 app.set('view engine','ejs');
 app.use(session({ secret: 'your-secret-key', resave: true, saveUninitialized: true }));
-mongoose.connect("mongodb://localhost:27017/auth",{ useUnifiedTopology: true });
-
+mongoose.connect(process.env.MONGO_URL,{ useUnifiedTopology: true }).then((e)=>console.log("mongodb connected"));
+const PORT = process.env.PORT||4000;
 const userschema=new mongoose.Schema({
   myname:String,
   email:String,
@@ -120,4 +122,4 @@ app.post("/register",async (req,res)=>{
     res.redirect("/");
    });
   
-app.listen(2000);
+app.listen(PORT,(e)=>console.log(`${PORT} start`));

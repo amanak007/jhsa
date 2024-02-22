@@ -2,9 +2,10 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "auth.js",
+  "main": "app.js",
   "scripts": {
-    "nodemon": "nodemon auth.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +14,7 @@
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
     "email-validator": "^2.0.4",
     "express": "^4.18.2",
